@@ -1,12 +1,12 @@
 let num = 266219;
 let str = String(num)
 let arr = str.split('');
-let amount = 0;
+let amount = 1;
 
 
 
 for (let i = 0; i < arr.length; i++) {
-	 amount +=+ arr[i];
+	 amount *=+ arr[i];
 
 }
 
