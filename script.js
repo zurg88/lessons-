@@ -1,21 +1,37 @@
-let num = 266219;
-let str = String(num)
-let arr = str.split('');
-let amount = 1;
+'use strict';
 
 
+let lang = 'ru';
 
-for (let i = 0; i < arr.length; i++) {
-	 amount *=+ arr[i];
+let ruDays = ['понедельник', 'вторник', 'среда', 'четверг', 'пятница', 'суббота', 'воскресенье'];
 
+let engDays = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
+
+let multyDays = [ ['понедельник', 'вторник', 'среда', 'четверг', 'пятница', 'суббота', 'воскресенье'],
+ 				  ['Monday',	'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'] ];
+
+if ( lang === 'ru' ) {
+	console.log(String(ruDays));
+} else if ( lang === 'eng' ) {
+	console.log(String(engDays));
+} else {
+	console.log('выберите язык!');
 }
 
-console.log(amount);
+switch (lang) {
+	case 'ru':
+		console.log(String(ruDays));
+		break;
 
-let amountPower = amount ** 3; // Возвёл в степень
+	case 'eng':
+		console.log(String(engDays));
+		break;
 
-console.log(amountPower);
+	default:
+		console.log('выберите язык!');
+		break;
+}
 
-console.log( String(amountPower).slice(0,2) );
+let showDays = lang === 'eng' ? console.log(...multyDays[1]) : console.log(...multyDays[0]);
 
 
