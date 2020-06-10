@@ -1,42 +1,22 @@
 'use strict';
 
+let userString = prompt('Введите данные');
 
-let lang = 'ru';
 
-let ruDays = ['понедельник', 'вторник', 'среда', 'четверг', 'пятница', 'суббота', 'воскресенье'];
-
-let engDays = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
-
-let multyDays = [ ['понедельник', 'вторник', 'среда', 'четверг', 'пятница', 'суббота', 'воскресенье'],
- 				  ['Monday',	'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'] ];
-
-if ( lang === 'ru' ) {
-	console.log(String(ruDays));
-} else if ( lang === 'eng' ) {
-	console.log(String(engDays));
-} else {
-	console.log('выберите язык!');
+function cropString(str, strLength) {
+	if (str.length > 30) {
+		return str.substr(0, strLength) + '...';
+	}
 }
 
-switch (lang) {
-	case 'ru':
-		console.log(String(ruDays));
-		break;
 
-	case 'eng':
-		console.log(String(engDays));
-		break;
-
-	default:
-		console.log('выберите язык!');
-		break;
+function getString(str) {
+	if(typeof(str) === 'string') {
+		alert('Поздравляю! У вас строка!');
+		console.log(str.trim());
+	}
 }
 
-let showDays = lang === 'eng' ? console.log(...multyDays[1]) : console.log(...multyDays[0]);
+getString(userString);
+console.log(cropString(userString, 30));
 
-/////////
-
-let namePerson = prompt('Ваше имя?');
-
-let person = (namePerson === 'Артём') ? console.log('Директор') : 
-(namePerson === 'Максим') ? console.log('Преподователь') : console.log('Студент');
