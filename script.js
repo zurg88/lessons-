@@ -34,4 +34,9 @@ switch (lang) {
 
 let showDays = lang === 'eng' ? console.log(...multyDays[1]) : console.log(...multyDays[0]);
 
+/////////
 
+let namePerson = prompt('Ваше имя?');
+
+let person = (namePerson === 'Артём') ? console.log('Директор') : 
+(namePerson === 'Максим') ? console.log('Преподователь') : console.log('Студент');
