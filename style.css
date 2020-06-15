@@ -1,0 +1,18 @@
+.day {
+	font-weight: bold;
+}
+
+.holiday {
+	font-style: italic;
+}
+
+#week {
+	list-style-type: none;
+	width: 20%;
+	margin: 0 auto;
+	margin-top: 70px;
+}
+
+#week li {
+	margin: 20px;
+}

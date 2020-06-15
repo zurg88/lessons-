@@ -1,22 +1,26 @@
 'use strict';
 
-let userString = prompt('Введите данные');
+let date = new Date();
+
+let day =date.getDay() - 1;
+
+let week = ['понедельник', 'вторник', 'среда', 'четверг', 'пятница', 'суббота', 'воскресенье'];
+
+let weekList = document.getElementById('week');
 
 
-function cropString(str, strLength) {
-	if (str.length > 30) {
-		return str.substr(0, strLength) + '...';
+for (let i = 0; i < week.length; i++) {
+	let li = document.createElement('li');
+	li.innerText = week[i];
+	weekList.append(li);
+	if(i === day) {
+		li.classList.add('day');
+	} else if(week[i] === 'суббота' || week[i] === 'воскресенье') {
+		li.classList.add('holiday');
 	}
 }
 
 
-function getString(str) {
-	if(typeof(str) === 'string') {
-		alert('Поздравляю! У вас строка!');
-		console.log(str.trim());
-	}
-}
 
-getString(userString);
-console.log(cropString(userString, 30));
+console.log(weekList);
 
