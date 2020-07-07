@@ -1,74 +1,55 @@
 'use strict';
 
-function getUserNumber() {
-	let userNumber = prompt('Угадай число от 1 до 100');
-	if(isNaN(userNumber) || userNumber === "") {
-		alert('Введи число!');
-		getUserNumber();
-	} else {
-		return userNumber;
-	}
-
-}
-
-function getRandomNumber(min, max) {
-	let randomNum = min - 0.5 + Math.random() * (max - min + 1);
-	console.log(Math.round(randomNum));
-	return Math.round(randomNum);
-}
-
-function getWiner(ranNum) {
-	let count = 10;
-	 function result(ranNum) {
-		let userNum = getUserNumber();
-		
-		  if(userNum === null || userNum === undefined) {
-			alert('Игра окончена');
-			count = 10;
-		} else {
-			userNum = +userNum;
-			if(userNum === ranNum){
-				let userUns = confirm('Вы победитель!Хотели бы сыграть еще?');
-					if(userUns) {
-						getWiner( getRandomNumber(1, 100));
-					}
-				count = 10;
-			} else if(userNum < ranNum) {
-				count--;
-				breakGame(count);
-				if (count > 0) {
-					alert(`Загаданное число больше, осталось ${count} попыток`);
-				result(ranNum);
-				}
-				
-			}  else {
-				count--;
-				breakGame(count);
-				if (count > 0) {
-					alert('Загаданное число меньше, осталось ${count} попыток');
-				result(ranNum);
-				}
-				 
-			}
-
-		}
-
-		function breakGame(count) {
-			if (count === 0) {
-				let userUns = confirm('Попытки закончились, хотите сыграть еще?');
-				if(userUns) {
-					getWiner( getRandomNumber(1, 100));
-				} else if(!userUns) {
-					 alert('Игра окончена');
-				}
-			}
-		}
-	}
-	result(ranNum);
-	
-}
-
-getWiner( getRandomNumber(1, 100));
 
 
+  setInterval(() => {
+	const timeDate = document.querySelector('.date');
+const fullDate = document.querySelector('.fulldate');
 
+let date = new Date(), 
+	hours = date.getHours(),
+	minutes = date.getMinutes(),
+	seconds = date.getSeconds(),
+	year = date.getFullYear(),
+	month = date.getMonth(),
+	day = date.getDate();
+
+
+const arrHoursStr = ['час', 'часа', 'часов'];
+ let hoursStr;
+ if (hours < 2) {
+	hoursStr = arrHoursStr[0];
+ } else if (hours > 1 || hours < 20) {
+	hoursStr = arrHoursStr[2];
+ } else {
+	hoursStr = arrHoursStr[1];
+ }
+
+const options = {
+	year: 'numeric',
+	month: 'long',
+	day: 'numeric',
+	weekday: 'long',
+	timezone: 'UTC',
+  };
+
+
+  const options2 = {
+	timezone: 'UTC',
+	hour: 'numeric',
+	minute: 'numeric',
+	second: 'numeric'
+  };
+
+ let zero = '0';
+
+ function addZero(n) {
+	 if(n < 10) {
+		 return `${zero}${n}`;
+	 }
+ }
+
+  fullDate.textContent = `a) - Сегодня ${date.toLocaleString('ru', options)} ${hours} ${hoursStr} ${minutes} минуты ${seconds} секунд`;
+
+  timeDate.textContent = ` ${addZero(day)} : ${addZero(month)} : ${year}` + ' - ' + date.toLocaleString("ru", options2);
+  }, 1000)
