@@ -1,26 +1,34 @@
 'use strict';
 
-let date = new Date();
+const arr = ['21464', '33456', '26403', '45643', '55543', '22222', '4444'];
 
-let day =date.getDay() - 1;
+let newArr = arr.filter(item => {
+	return item[0] === '2' || item[0] === '4';
+})
 
-let week = ['понедельник', 'вторник', 'среда', 'четверг', 'пятница', 'суббота', 'воскресенье'];
+console.log(newArr);
 
-let weekList = document.getElementById('week');
+////
 
-
-for (let i = 0; i < week.length; i++) {
-	let li = document.createElement('li');
-	li.innerText = week[i];
-	weekList.append(li);
-	if(i === day) {
-		li.classList.add('day');
-	} else if(week[i] === 'суббота' || week[i] === 'воскресенье') {
-		li.classList.add('holiday');
+function isPrime(value) {
+	if (isNaN(value) || !isFinite(value) || value%1 || value < 2) return false; 
+	let max=Math.floor(Math.sqrt(value));
+	for (let i = 2; i <= max; i++) {
+	  if (value % i==0) {
+		return false;
+	  }
 	}
-}
+	return true;
+  }
+
+  let primaryNumber = [];
+  
+  for (let i = 2; i <= 100; i++) {
+	if(isPrime(i)) 
+	  primaryNumber.push(i);
+  }
+
+  console.log(primaryNumber);
 
 
-
-console.log(weekList);
 
