@@ -1,34 +1,74 @@
 'use strict';
 
-const arr = ['21464', '33456', '26403', '45643', '55543', '22222', '4444'];
-
-let newArr = arr.filter(item => {
-	return item[0] === '2' || item[0] === '4';
-})
-
-console.log(newArr);
-
-////
-
-function isPrime(value) {
-	if (isNaN(value) || !isFinite(value) || value%1 || value < 2) return false; 
-	let max=Math.floor(Math.sqrt(value));
-	for (let i = 2; i <= max; i++) {
-	  if (value % i==0) {
-		return false;
-	  }
+function getUserNumber() {
+	let userNumber = prompt('Угадай число от 1 до 100');
+	if(isNaN(userNumber) || userNumber === "") {
+		alert('Введи число!');
+		getUserNumber();
+	} else {
+		return userNumber;
 	}
-	return true;
-  }
 
-  let primaryNumber = [];
-  
-  for (let i = 2; i <= 100; i++) {
-	if(isPrime(i)) 
-	  primaryNumber.push(i);
-  }
+}
 
-  console.log(primaryNumber);
+function getRandomNumber(min, max) {
+	let randomNum = min - 0.5 + Math.random() * (max - min + 1);
+	console.log(Math.round(randomNum));
+	return Math.round(randomNum);
+}
+
+function getWiner(ranNum) {
+	let count = 10;
+	 function result(ranNum) {
+		let userNum = getUserNumber();
+		
+		  if(userNum === null || userNum === undefined) {
+			alert('Игра окончена');
+			count = 10;
+		} else {
+			userNum = +userNum;
+			if(userNum === ranNum){
+				let userUns = confirm('Вы победитель!Хотели бы сыграть еще?');
+					if(userUns) {
+						getWiner( getRandomNumber(1, 100));
+					}
+				count = 10;
+			} else if(userNum < ranNum) {
+				count--;
+				breakGame(count);
+				if (count > 0) {
+					alert(`Загаданное число больше, осталось ${count} попыток`);
+				result(ranNum);
+				}
+				
+			}  else {
+				count--;
+				breakGame(count);
+				if (count > 0) {
+					alert('Загаданное число меньше, осталось ${count} попыток');
+				result(ranNum);
+				}
+				 
+			}
+
+		}
+
+		function breakGame(count) {
+			if (count === 0) {
+				let userUns = confirm('Попытки закончились, хотите сыграть еще?');
+				if(userUns) {
+					getWiner( getRandomNumber(1, 100));
+				} else if(!userUns) {
+					 alert('Игра окончена');
+				}
+			}
+		}
+	}
+	result(ranNum);
+	
+}
+
+getWiner( getRandomNumber(1, 100));
 
 
 
