@@ -4,8 +4,9 @@ function getUserNumber() {
 	let userNumber = prompt('Угадай число от 1 до 100');
 	if(isNaN(userNumber) || userNumber === "") {
 		alert('Введи число!');
-		getUserNumber();
+		return getUserNumber();
 	} else {
+		console.log(userNumber);
 		return userNumber;
 	}
 
@@ -21,8 +22,8 @@ function getWiner(ranNum) {
 	let count = 10;
 	 function result(ranNum) {
 		let userNum = getUserNumber();
-		
-		  if(userNum === null || userNum === undefined) {
+		console.log(userNum);
+		  if(userNum === null) {
 			alert('Игра окончена');
 			count = 10;
 		} else {
